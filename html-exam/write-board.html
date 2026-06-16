@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 글쓰기</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 500px;
+            margin: 0 auto;
+        }
+        th {
+            text-align: left;
+            padding: 8px;
+            width: 120px;
+        }
+        td {
+            padding: 8px;
+        }
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .center {
+            text-align: center;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="center">게시판 글쓰기</h2>
+
+    <form method="post">
+        <table>
+            <!-- 제목 -->
+            <tr>
+                <th><label for="title">제목 <span class="required">*</span></label></th>
+                <td><input type="text" id="title" name="title" required placeholder="제목을 입력하세요"></td>
+            </tr>
+            <!-- 작성자 -->
+            <tr>
+                <th><label for="writer">작성자 <span class="required">*</span></label></th>
+                <td><input type="text" id="writer" name="writer" required placeholder="작성자 이름을 입력하세요"></td>
+            </tr>
+            <!-- 비밀번호 -->
+            <tr>
+                <th><label for="password">비밀번호 <span class="required">*</span></label></th>
+                <td><input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요"></td>
+            </tr>
+            <!-- 카테고리 -->
+            <tr>
+                <th><label for="category">카테고리</label></th>
+                <td>
+                    <select id="category" name="category">
+                        <option value="notice">공지사항</option>
+                        <option value="qna">질문</option>
+                        <option value="free" selected>자유게시판</option>
+                    </select>
+                </td>
+            </tr>
+            <!-- 공개 여부 -->
+            <tr>
+                <th>공개 여부</th>
+                <td>
+                    <input type="radio" id="open" name="visibility" value="public" checked>
+                    <label for="open">공개</label>
+                    <input type="radio" id="private" name="visibility" value="private">
+                    <label for="private">비공개</label>
+                </td>
+            </tr>
+            <!-- 내용 -->
+            <tr>
+                <th colspan="2"><label for="content">내용 <span class="required">*</span></label></th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="content" name="content" rows="10" required placeholder="내용을 입력하세요"></textarea>
+                </td>
+            </tr>
+            <!-- 첨부파일 -->
+            <tr>
+                <th><label for="file">첨부파일</label></th>
+                <td><input type="file" id="file" name="attachment"></td>
+            </tr>
+            <!-- 작성 동의 -->
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" id="agree" name="agreement" required>
+                    <label for="agree">게시글 등록에 동의합니다.</label>
+                </td>
+            </tr>
+            <!-- 버튼 -->
+            <tr>
+                <td colspan="2" class="center">
+                    <br>
+                    <input type="submit" value="등록">
+                    <input type="reset" value="취소">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
