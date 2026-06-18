@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let numArray = [];
+        for(let i = 0; i < 10; i++) {
+            let num1 = Math.random() * 9;
+            numArray.push( Math.round(num1) + 1 );
+        }
+
+        for(let i in numArray) {
+            document.write(`${numArray[i]} `);
+        }
+    </script>
+</body>
+</html>
