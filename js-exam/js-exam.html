@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto</title>
+</head>
+
+<body>
+
+    <button id="btn"> 추첨기 </button>
+    <hr>
+    <div div="msg"></div>
+
+    <script>
+        
+        const btn = document.querySelector('#btn');
+        btn.addEventListener('click', function(event){
+            
+            const lottoNum = lottoNumber();
+            console.log(lottoNum);
+            const msg = document.querySelector('msg');
+            msg.innerHTML = `<h3>${String(lottoNum)}</h3>`;  // 배열 자체는 innerHtml로 한번에 출력이 안되나?
+        });
+
+
+
+
+        function lottoNumber() {
+            let numArray = [];
+            for(let i=0; i<6; i++){
+                const number = Math.floor(Math.random() * 45);
+                numArray.push(number);
+            }
+           
+            return numArray;
+        }
+
+    </script>
+</body>
+</html>

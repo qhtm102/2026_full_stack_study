@@ -6,55 +6,82 @@
     <title>GRADE</title>
 </head>
 <body>
-    
-    <form>
 
         <div>
-            <input type="text" name="kor" placeholder="국어 점수 입력">
+            KOR   <input type="text" id="kor" placeholder="국어 점수 입력">
         </div>
         <div>
-            <input type="text" name="eng" placeholder="영어 점수 입력">
+            ENG   <input type="text" id="eng" placeholder="영어 점수 입력">
         </div>
         <div>
-            <input type="text" name="math" placeholder="수학 점수 입력">
+            MATH  <input type="text" id="math" placeholder="수학 점수 입력">
         </div>
         
-        <input type="submit" value="결과">
+        <Button id="result">학점 산출</Button>
         
-        <div>
-            
-
-        </div>
+        <div id="message"></div>
 
 
-    </form>
 
 
     <script>
 
-        let score1, score2, score3;
+        function getTotal(kor, eng, mat) {
+            const total = kor + eng + mat;
+            return total;
+        }
+
+        function getAverage(total) {
+            const average =  Math.round(total / 3);
+            return average;
+        }
+
+        function getGrade(average) {
+            let grade;
+            if (average >= 90) {
+                grade = 'A';
+            }
+            else if (average >= 80) {
+                grade = 'B';
+            }
+            else if (average >= 70) {
+                grade = 'C';
+            }
+            else if (average >= 60) {
+                grade = 'D';
+            }
+            else {
+                grade = 'F';
+            }
+
+            return grade;
+        }
+
+        const resultBtn = document.querySelector('#result');
+        resultBtn.addEventListener('click', function(event){
+
+            const korObject = document.querySelector('#kor');
+            const korValue = parseInt(korObject.value);
+
+            const engObject = document.querySelector('#eng');
+            const engValue = parseInt(engObject.value);
+
+            const matObject = document.querySelector('#math');
+            const matValue = parseInt(matObject.value);
+            
+            const total = getTotal(korValue, engValue, matValue);
+            const average = getAverage(total);
+            const grade = getGrade(average);
+            console.log(total, average, grade);
+            const msg = document.querySelector('#message');
+            msg.innerHTML = `[ 총합: ${total} | 평균: ${average} | 학점: ${grade} ]`;
+        });
+
         
-        let total = score1 + score2 + score3;
-        let average = Math.round(total / 3);
 
-        // console.log(total, average);
-
-        let grade;
-        if (average >= 90) {
-            grade = 'A';
-        }
-        else if (average >= 80) {
-            grade = 'B';
-        }
-        else if (average >= 70) {
-            grade = 'C';
-        }
-        else if (average >= 60) {
-            grade = 'D';
-        }
-        else {
-            grade = 'F';
-        }
+        
+        
+        
     </script>
 </body>
 </html>

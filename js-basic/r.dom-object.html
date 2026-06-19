@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체 연습</title>
+</head>
+<body>
+    <!-- 
+        1. 한국돈 krw를 입력
+        2. 원 -> 달러 버튼 클릭
+        3. 그 옆에 달러로 변환해 출력 
+    -->
+
+    <input type="text" id="krw" placeholder="xxx원">
+    <button id="krToUs"> 원->달러 </button>
+    <input type="text" id="usd">
+
+
+    <script>
+        const EXCHANGE_LATE = 1526.30;
+
+        function krwToUsd(krw) {
+            const usd = krw / EXCHANGE_LATE
+            return usd;
+        }
+
+        function usdToKrw(usd) {
+            const krw = usd * EXCHANGE_LATE;
+            return krw;
+        }
+
+        const changeBtn = document.querySelector('#krToUs');
+        changeBtn.addEventListener('click', function(event){
+            const kr = document.querySelector('#krw');
+            const krw = parseInt(kr.value);
+            const usd = krwToUsd(krw);
+
+            const usdOut = document.querySelector('#usd');
+            // usdOut.innerValue(`<input type="text" id="usd">${String(usd)}`);
+            usdOut.value = usd; // input은 value로 출력
+        });
+        
+        
+
+    </script>
+</body>
+</html>

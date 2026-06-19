@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 연습</title>
+</head>
+<body>
+    
+    <script>
+
+        function makeBox(width=30, height=15) {
+            // let width = 20, height = 30;
+
+            document.write('<table>');
+            for (let y = 0; y < height; y++) {
+                document.write('<tr>');
+                for (let x = 0; x < width; x++) {
+                    if (x == 0 || x == width - 1 || y == 0 || y == height - 1) { // a || b ==> or , a 또는 b중 한 개만 true여도 true
+                        document.write('<td>*</td>');
+                    }
+                    else {
+                        document.write('<td>&nbsp;</td>');
+                    }
+                }
+                document.write('</tr>');
+            }
+            document.write('</table>');
+        return 0;
+        }
+
+        function callMakeBox() {
+            let width = 20, height = 30;
+            makeBox(width, height);
+            makeBox(50, 20);
+            makeBox();  // 전달인자를 제공하지 않으면 기본 값 사용
+            makeBox(100); // 첫 번째 전달인자는 제공, 두 번째 전달인자는 함수의 기본값을 사용 (첫번째만 기본값 사용은 불가)
+            document.write(`<h2>${width}</h2>`);
+        }
+
+        callMakeBox(); // 함수 호출
+        
+        
+
+           
+    </script>
+</body>
+</html>

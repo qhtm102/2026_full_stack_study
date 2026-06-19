@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>익명 함수 연습</title>
+</head>
+<body>
+
+    <script>
+
+        function randomRange(min, max) {
+            const GAP = max - min;
+            const selectedValue = Math.random() * GAP + min;
+            
+            return selectedValue;
+        }
+
+        const f = randomRange;  // 함수는 1급 객체이므로 변수에 저장할 수 있다.
+        // const selectedValue = randomRange(100, 1000);
+        const selectedValue = f(10, 100); // 함수를 저장한 변수는 함수처럼 사용
+        document.write(`<h2>뽑힌 숫자 : ${selectedValue}</h2>`);
+
+        //////////////////////////////////////////////
+
+        // 익명함수 : 이름이 없는 함수 -> 변수에 저장하거나 전달인자로 전달해서 사용
+        const f2 = function(min, max) {
+            const GAP = max - min;
+            const selectedValue = Math.random() * GAP + min;
+            
+            return selectedValue;
+        }
+
+        const selectedValue2 = f(10, 100); // 함수를 저장한 변수는 함수처럼 사용
+        document.write(`<h2>뽑힌 숫자 : ${selectedValue2}</h2>`);
+
+        ////////////////////////////////////////////////
+
+        // 화살표 함수 :  변수에 저장하거나 전달인자로 전달해서 사용
+        const f3 = (min, max) => Math.random() * ( max - min ) + min;
+
+        const selectedValue3 = f(10, 100); // 함수를 저장한 변수는 함수처럼 사용
+        document.write(`<h2>뽑힌 숫자 : ${selectedValue3}</h2>`);
+
+        ///////////////////////////////////////////////////
+
+        const numbers = [42, 64, 33, 13, 43, 90, 66, 43];
+        
+        // map : 함수를 사용해서 변환
+        const result = numbers.map( function(number) { return number * 10; } )
+        for(n of result) {
+            document.write(`| ${n} |`);
+        }
+
+        // arraow function
+        document.write(`<br>`);
+
+        const resultRamnda = numbers.map( number => number * 10  )
+        for(n of resultRamnda) {
+            document.write(`| ${n} |`);
+        }
+    </script>
+</body>
+</html>

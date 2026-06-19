@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서 객체 연습</title>
+</head>
+<body>
+
+    <!-- 
+    <button>버튼 ( 오늘의 운세 )
+    <hr>밑줄
+    <div></div>메시지 
+    1. 버튼을 클릭, 난수 이벤트 발생, 해당 메시지 찾기
+    2. 해당 메시지 div에 표시
+    -->
+
+        <button id="btn">오늘의 운세</button>
+        <hr>
+        <div id="message"></div>
+
+    <script>
+        const fortunes = [
+                "오늘은 예상치 못한 좋은 소식이 찾아올 수 있습니다.",
+                "작은 실수가 큰 불편으로 이어질 수 있으니 주의하세요.",
+                "오랫동안 고민하던 일이 긍정적인 방향으로 풀릴 가능성이 있습니다.",
+                "주변 사람과의 오해가 생길 수 있으니 말에 신중하세요.",
+                "새로운 인연이나 기회가 당신을 기다리고 있습니다.",
+                "계획했던 일정에 차질이 생길 수 있습니다.",
+                "평소보다 집중력이 높아져 좋은 성과를 낼 수 있습니다.",
+                "충동적인 소비로 후회할 일이 생길 수 있습니다.",
+                "주변의 도움 덕분에 어려운 문제를 해결하게 됩니다.",
+                "체력 관리에 소홀하면 피로가 쉽게 쌓일 수 있습니다.",
+                "뜻밖의 행운이 작은 보상으로 돌아올 수 있습니다.",
+                "기대가 큰 만큼 실망도 커질 수 있으니 균형을 유지하세요.",
+                "도전적인 선택이 좋은 결과로 이어질 가능성이 높습니다.",
+                "중요한 결정을 서두르면 아쉬움이 남을 수 있습니다.",
+                "오늘의 노력이 미래의 큰 성과를 만드는 밑거름이 됩니다.",
+                "예상치 못한 경쟁자가 나타나 긴장하게 될 수 있습니다.",
+                "마음의 여유를 가지면 좋은 아이디어가 떠오를 것입니다.",
+                "사소한 갈등이 커질 수 있으니 양보하는 자세가 필요합니다.",
+                "행운의 기운이 따라 작은 목표를 달성할 수 있습니다.",
+                "컨디션이 평소보다 떨어질 수 있으니 무리하지 마세요."
+            ];
+
+        // 1. 찾기
+        const btn = document.querySelector('#btn');
+        
+        // 2. 사용하기 (이벤트 처리기 연결)
+        btn.addEventListener('click', function(){
+            const fortune = findFortune();
+
+            // 1. 보여줄 부분 찾기
+            const msg = document.querySelector('#message');
+            // 2. 사용하기 (표시 내용 바꾸기)
+            msg.innerHTML =`<h2>${fortune}</h2>`;
+        });
+
+        function findFortune() {
+            const randomNum = Math.floor(Math.random() * 20);
+            return fortunes[randomNum];
+        }
+    </script>
+</body>
+</html>
