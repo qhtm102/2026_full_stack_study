@@ -10,7 +10,7 @@
 
     <button id="btn"> 추첨기 </button>
     <hr>
-    <div div="msg"></div>
+    <div id="msg"></div>
 
     <script>
         
@@ -19,7 +19,7 @@
             
             const lottoNum = lottoNumber();
             console.log(lottoNum);
-            const msg = document.querySelector('msg');
+            const msg = document.querySelector('#msg');
             msg.innerHTML = `<h3>${String(lottoNum)}</h3>`;  // 배열 자체는 innerHtml로 한번에 출력이 안되나?
         });
 

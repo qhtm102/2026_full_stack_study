@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강사본</title>
+    <style>
+        td{
+            width: 100px;
+            height: 100px;
+            border: solid 2px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="colors-tr">
+            <td id="red" style="background-color: red;"></td>
+            <td id="orange" style="background-color: orange;"></td>
+            <td id="yellow" style="background-color: yellow;"></td>
+            <td id="green" style="background-color: green;"></td>
+            <td id="blue" style="background-color: blue;"></td>
+            <td id="navy" style="background-color: navy;"></td>
+            <td id="purple" style="background-color: purple;"></td>
+        </tr>
+        <tr>
+            <td id="canvas" colspan="7" style="width: 100%; height: 300px; background-color: rgb(130, 30, 132);"></td>
+        </tr>
+    </table>
+
+   <script>
+        window.addEventListener('load', function(evnet){
+        // document.addEventListener('DOMContentLoaded', function(event){
+
+            const canvas = document.querySelector('#canvas');
+
+            // 1. td를 따로 처리 
+            // document.querySelector('#red').addEventListener('click', function(event) {  
+            //     canvas.style.backgroundColor = 
+            //     document.querySelector('#red').style.backgroundColor;
+            // });
+            
+            // document.querySelector('#orange').addEventListener('click', function(event) {  
+            //     canvas.style.backgroundColor = 
+            //     document.querySelector('#orange').style.backgroundColor;
+            // });
+            
+            // document.querySelector('#yellow').addEventListener('click', function(event) {  
+            //     canvas.style.backgroundColor = 
+            //     document.querySelector('#yellow').style.backgroundColor;
+            // });
+
+            // 2. tr로 묶어서 
+            // const tds = document.querySelectorAll('#colors-tr > td');
+
+            // for(let i = 0; i<tds.length; i++) {
+            //     tds[i].addEventListener('click', function(event){
+            //         // canvas.style.backgroundColor = tds[i].style.backgroundColor;    // 위험! : 내부의 i와 외부의 i 실행 시점이 다를 수 있음(로딩 시점이 다르게 적용될 수 있음) 
+            //         const td = event.target; // 현재 이벤트가 발생한 객체
+            //         canvas.style.backgroundColor = td.style.backgroundColor;
+            //     });
+            // }
+
+            // 3. 마우스 올리고 치우고
+            const tds = document.querySelectorAll('#colors-tr > td');
+            for(let i = 0; i<tds.length; i++) {
+                // tds[i].addEventListener('mouseenter', function(event){
+                tds[i].addEventListener('mouseover', function(event){
+                    const td = event.target; // 현재 이벤트가 발생한 객체
+                    canvas.style.backgroundColor = td.style.backgroundColor;
+                });
+                // tds[i].addEventListener('mouseout', function(event){
+                tds[i].addEventListener('mouseleave', function(event){
+                    canvas.style.backgroundColor = "";
+                });
+            }
+            
+
+        });
+   </script>
+</body>
+</html>

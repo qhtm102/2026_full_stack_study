@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       td{
+            width: 100px;
+            height: 100px;
+            border: solid 2px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="btn">
+            <td id="red" style="background-color: red;"></td>
+            <td id="orange" style="background-color: orange;"></td>
+            <td id="yellow" style="background-color: yellow;"></td>
+            <td id="green" style="background-color: green;"></td>
+            <td id="blue" style="background-color: blue;"></td>
+            <td id="navy" style="background-color: navy;"></td>
+            <td id="purple" style="background-color: purple;"></td>
+       
+        </tr>
+        <tr>
+            <td id="result" colspan="7" style="width: 100%; height: 300px;">
+            </td>
+        </tr>
+
+    </table>
+
+    <script>
+        window.addEventListener('load', function(event){
+            const result = document.querySelector('#result');
+            // const resultColor = document.querySelector('#result').style.backgroundColor;
+                
+            const btns = document.querySelectorAll('#btn > td');
+
+            for(let i = 0; i < btns.length; i++) {
+                btns[i].addEventListener('click', function(event) {
+                    result.style.backgroundColor = btns[i].style.backgroundColor;    
+                    // resultColor = btns[i].style.backgroundColor;    
+                });
+            }
+        });
+        
+    </script>
+</body>
+</html>

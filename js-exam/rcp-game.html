@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="rsp">
+            <td><img src="images/scissors.png" data-x="0"></td>
+            <td><img src="images/rock.png" data-x="1"></td>
+            <td><img src="images/paper.png" data-x="2"></td>
+        </tr>
+
+        <tr>
+            <td id="btn" colspan="3">가위바위보!</td>
+        </tr>
+
+        <tr>
+            <td><img src="" id="com"></td>
+            <td colspan="2"><img src="" id="result"></td>
+        </tr>
+    </table>
+
+    <script>
+        window.addEventListener('load', function(event){
+
+            const rsp = document.querySelectorAll('#rsp');
+            const com = document.querySelector('#com');
+            let users;
+            for(let i=0; i <rsp.length; i++) {
+                rsp[i].addEventListener('click', function(event){
+                    event.target.style.border = '';
+                    users = event.target.dataX;
+                    event.target.style.border = `solid,5px,red`;
+                });
+            }
+
+            document.querySelector('#btn').addEventListener('click', function(event){
+
+                const comNum =  Math.floor(Math.random() * 3);
+                if(comNum == 0) {
+                    com.src = "images/scissors.png";
+                }
+                else if(comNum == 1) {
+                    com.src = "images/rock.png";
+                }
+                else {
+                    com.src = "images/paper.png";
+                }
+
+                let gameResult;
+
+                if( (users == 0 && comNum == 2) ||
+                    (users == 1 && comNum == 0) ||
+                    (users == 2 && comNum == 1)) {
+                    gameResult = 'win';
+                }
+                else if(users == comNum) {
+                    gameResult = 'draw';
+                }
+                else {
+                    gameResult = 'lose';
+                }
+                document.querySelector('#result').src=`images/${gameResult}.png`;
+            });
+
+        });
+    </script>
+</body>
+</html>

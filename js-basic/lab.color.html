@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>색 조합</title>
+</head>
+<body>
+    
+    <table>
+        <tr >
+            <td id="random" style="border: solid 2px; text-align: center;" >
+                무작위 색상 고르기
+            </td>
+        </tr>
+        <tr>
+            <td id="canvas" style="border: solid 2px; width: 100%; height: 150px;">
+                <h3 id="colors" style="text-align: center;"></h3>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        window.addEventListener('load', function(event){
+            document.querySelector('#random').addEventListener('click', function(event){
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+    
+                document.querySelector('#canvas').style.backgroundColor = `rgb(${r},${g},${b})`;
+                document.querySelector('#colors').innerHTML = `rgb(${r},${g},${b})`;
+            });
+
+        });
+    </script>
+</body>
+</html>

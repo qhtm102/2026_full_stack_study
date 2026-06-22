@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr id="three">
+            <td id="sci" style="border: 1px solid red;"><img src="images/scissors.png" data-v = "0"></td>
+            <td id="roc"><img src="images/rock.png" data-v="1"></td>
+            <td id="pap"><img src="images/paper.png" data-v="2"></td>
+        </tr>
+        
+        <tr>
+            <td colspan="3"><button id="start">게임 시작</button></td>
+        </tr>
+        
+        <tr>
+            <td><img src="" id="yours"></td>
+            <td colspan="2"  style="width: 300px; height: 150px;">
+                <img src="" id="results">
+            </td>
+        </tr>
+
+    </table>
+
+    <script>
+        // 사용자 선택한 칸에 빨간 테두리
+        // pc의 선택을 아래 칸에 출력
+
+        window.addEventListener('load', function(event){
+            
+           
+            const rcp = document.querySelectorAll('#three > td');
+            const choice = document.querySelector('#yours');
+
+            let selectNo;
+            
+            // for(let i=0; i<rcp.length; i++) {
+            //     rcp[i].addEventListener('click', function(event){
+            //     choice.src = event.target.src;
+            //     console.log(event.target);
+            //     selectNo = event.target.getAttribute("data-v");
+            //     });
+            // }
+
+            for(let i=0; i<rcp.length; i++) {
+                rcp[i].addEventListener('click', function(event){
+                choice.src = event.target.src;
+                console.log(event.target);
+                selectNo = event.target.getAttribute("data-v");
+                });
+            }
+
+            let result;
+            const startBtn = document.querySelector('#start');
+            startBtn.addEventListener('click', function(event){
+                const randomNum = Math.floor(Math.random() * 3);
+                console.log('selecteNo: ' + selectNo + ' randomNum: ' + randomNum);
+                if((selectNo == 0 && randomNum == 2) ||
+                (selectNo == 1 && randomNum == 0) ||
+                (selectNo == 2 && randomNum == 1)) {
+                    result = 'win';
+                }
+                else if(selectNo == randomNum) {
+                    result = 'draw';
+                }
+                else {
+                    result = 'lose';
+                }
+                console.log(result);
+                document.querySelector('#results').src= `images/${result}.png`;
+            }); 
+
+        });
+    </script>
+</body>
+</html>

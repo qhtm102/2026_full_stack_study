@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table-td-document 예제</title>
+    <style>
+        table{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr id="btn">
+            <td id="red" style="background-color: red;"></td>
+            <td id="orange" style="background-color: orange;"></td>
+            <td id="yellow" style="background-color: yellow;"></td>
+            <td id="green" style="background-color: green;"></td>
+            <td id="blue" style="background-color: blue;"></td>
+            <td id="navy" style="background-color: navy;"></td>
+            <td id="purple" style="background-color: purple;"></td>
+        </tr>
+        <tr id="color">
+            <td id="result" colspan="7">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        window.addEventListener('load', function(event){
+             const result = document.querySelector('#result');
+
+        // 1. 버튼 하나 씩 클릭 이벤트 (7개)
+
+        // const redBtn = document.querySelector('#red');
+        // redBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = redBtn.style.backgroundColor;
+        // });
+
+        // const orangeBtn = document.querySelector('#orange');
+        // orangeBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = orangeBtn.style.backgroundColor;
+        // });
+
+        // const yellowBtn = document.querySelector('#yellow');
+        // yellowBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = yellowBtn.style.backgroundColor;
+        // });
+
+        // const greenBtn = document.querySelector('#green');
+        // greenBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = greenBtn.style.backgroundColor;
+        // });
+
+        // const blueBtn = document.querySelector('#blue');
+        // blueBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = blueBtn.style.backgroundColor;
+        // });
+
+        // const navyBtn = document.querySelector('#navy');
+        // navyBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = navyBtn.style.backgroundColor;
+        // });
+
+        // const purpleBtn = document.querySelector('#purple');
+        // purpleBtn.addEventListener('click', function(event) {
+        //     result.style.backgroundColor = purpleBtn.style.backgroundColor;
+        // });
+
+
+        // 2. 버튼을 찾아서 배열로 묶어 적용
+        const buttons = document.querySelectorAll('#btn > td');
+        console.log(buttons);
+        
+        for (let i=0; i<buttons.length; i++) {
+            const btns =  buttons[i].style.backgroundColor
+            buttons[i].addEventListener('click', function(event){
+                result.style.backgroundColor = buttons[i].style.backgroundColor;
+            });
+        }
+        
+        });
+
+       
+       
+    </script>
+</body>
+</html>
