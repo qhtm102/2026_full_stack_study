@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Malgun Gothic", sans-serif;
+    }
+
+    body {
+        background-color: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .signup-container {
+        width: 400px;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .blood-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 8px;
+    }
+
+    .blood-group label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: normal;
+        cursor: pointer;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+    <h2>회원가입</h2>
+
+    <!-- <form action="#" method="post"> -->
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">전화번호</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com" required>
+        </div>
+
+        <div class="form-group">
+            <label>혈액형</label>
+            <div class="blood-group">
+                <label>
+                    <input type="radio" name="bloodType" value="A">
+                    A형
+                </label>
+
+                <label>
+                    <input type="radio" name="bloodType" value="B">
+                    B형
+                </label>
+
+                <label>
+                    <input type="radio" name="bloodType" value="AB">
+                    AB형
+                </label>
+
+                <label>
+                    <input type="radio" name="bloodType" value="O">
+                    O형
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">가입하기</button>
+    <!-- </form> -->
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event)=>{
+        let regiName, regiPhone, regiEmail, regiBlood;
+
+
+        document.querySelector('.btn-submit').addEventListener('click', (event)=>{
+            regiName = document.querySelector('#name').value;
+            regiPhone = document.querySelector('#phone').value;
+            regiEmail = document.querySelector('#email').value;
+            // regiBlood = document.querySelector('.blood-group input').value;
+            regiBlood = document.querySelector('.blood-group input').value;
+
+            console.log(`이름:${regiName} ,폰: ${regiPhone},  이메일: ${regiEmail},  혈액형: ${regiBlood} `);
+
+            // let text = `{"member":[{"name":"${regiName}","phone":"${regiPhone}","email":"${regiEmail}","bloodType":"${regiBlood}"}]}`;
+            const member = {
+                "name": regiName,
+                "phone": regiPhone,
+                "email": regiEmail
+            }
+
+            const memberJson = JSON.parse(text);
+            console.log(typeof memberJson);
+            // member = [
+            //     {"regiName" : }
+            // ]
+        });
+
+
+
+    });
+</script>
+
+</body>
+</html>

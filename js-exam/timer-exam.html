@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">시작</button>
+    <button id="stop">중지</button>
+    <hr>
+    <div id="message"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event){
+
+            const startBtn = document.querySelector('#start');
+            const stopBtn = document.querySelector('#stop');
+            const div = document.querySelector('#message');
+
+            let timerId = null;
+            startBtn.addEventListener('click', function(event){
+                if(timerId != null) {
+                    return;
+                }
+                
+                timerId = window.setInterval(
+                    function(){
+                        div.innerHTML = `<h3> ${new Date()} </h3>`;
+                    }, 2000
+                );
+
+            });
+
+            stopBtn.addEventListener('click', function(event){
+                if(timerId == null) {
+                    return;
+                }
+
+                window.clearInterval(timerId);
+                timerId = null;
+            });
+        });
+    </script>
+</body>
+</html>

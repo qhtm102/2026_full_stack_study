@@ -34,11 +34,15 @@
 
             const rsp = document.querySelectorAll('#rsp');
             const com = document.querySelector('#com');
-            let users;
+            let users = 0;
+            rsp[users].style.border='';
             for(let i=0; i <rsp.length; i++) {
                 rsp[i].addEventListener('click', function(event){
-                    event.target.style.border = '';
-                    users = event.target.dataX;
+                    
+                    console.log(`${event.target.style.border}`);
+                    users = event.target.getAttribute('data-x');
+                    console.log(`users: ${users}`);
+                
                     event.target.style.border = `solid,5px,red`;
                 });
             }
@@ -69,6 +73,8 @@
                 else {
                     gameResult = 'lose';
                 }
+                console.log(`users : ${users}, coms: ${comNum}`);
+                console.log(gameResult);
                 document.querySelector('#result').src=`images/${gameResult}.png`;
             });
 
