@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="request-user">데이터 가져오기</button>
+    <hr>
+    <div id="message"></div>
+
+    <script>
+        window.addEventListener('load', function(event) {
+            const btn = document.querySelector('#request-user');
+            const div = document.querySelector('#message');
+
+            btn.addEventListener('click', function(event){
+
+                fetch('https://jsonplaceholder.typicode.com/users')
+                    .then(response => response.json())
+                    .then(json => {
+                        // for(let i=0; i<json.length; i++){
+                        //     console.log(typeof json[i].phone);
+                        //     div.innerHTML += `<h5>${json[i].id}. 
+                        //         <a href='x.fetch-user-detail.html?id=${json[i].id}&name=${json[i].name}&email=${json[i].email}&phone=${json[i].phone}&city=${json[i].address.city}'>${json[i].name}</a> 
+                        //         </h5>`
+                        // }
+                        for(let i=0; i<json.length; i++){
+                            console.log(typeof json[i].phone);
+                            div.innerHTML += `<h5>${json[i].id}. <a href='x.fetch-user-detail.html?id=${json[i].id}'>${json[i].name}</a></h5>`;
+                        }
+                    });
+                
+            });
+        });
+    </script>
+
+</body>
+</html>

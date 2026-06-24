@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="Stylesheet" href="menus.css">
+</head>
+<body>
+    <div id="button_bar">
+        <table align="center">
+            <tr id="btns">
+                <td id="type_thriller"><a href="#">스릴러</a></td>
+                <td id="type_sf"><a href="#">SF</a></td>
+                <td id="type_animation"><a href="#">애니메이션</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="slide_image">
+        <img src="https://via.placeholder.com/700x350" alt="slide">
+    </div>
+    <div id="timers"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event)=>{
+            const timers = document.querySelector('#timers');
+            
+            const images = document.querySelector('#slide_image');
+
+            window.setInterval(function(){
+                timers.innerHTML = `<h2 style='text-align:center;'>${new Date().toLocaleTimeString()}</h2>`;
+            }, 1000);
+
+            // 이미지 슬라이드
+            window.setInterval(function(){
+
+            }, 5000);
+        
+        
+        });
+
+            
+        
+
+    </script>
+</body>
+</html>
