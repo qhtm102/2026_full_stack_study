@@ -10,15 +10,15 @@
     <div id="button_bar">
         <table align="center">
             <tr id="btns">
-                <td id="type_thriller"><a href="#">스릴러</a></td>
-                <td id="type_sf"><a href="#">SF</a></td>
-                <td id="type_animation"><a href="#">애니메이션</a></td>
+                <td id="type_thriller"><img>스릴러</td>
+                <td id="type_sf"><img>SF</td>
+                <td id="type_animation"><img>애니메이션</td>
             </tr>
         </table>
     </div>
 
     <div id="slide_image">
-        <img src="https://via.placeholder.com/700x350" alt="slide">
+        <img src="images/0.jpg">
     </div>
     <div id="timers"></div>
 
@@ -26,16 +26,36 @@
         document.addEventListener('DOMContentLoaded', (event)=>{
             const timers = document.querySelector('#timers');
             
-            const images = document.querySelector('#slide_image');
+            const images = document.querySelector('#slide_image img');
+            let currentPosition = 0;
+            const imageList = ['0', '1', '2', '3', '4'];
 
             window.setInterval(function(){
                 timers.innerHTML = `<h2 style='text-align:center;'>${new Date().toLocaleTimeString()}</h2>`;
             }, 1000);
 
+            //////////////////////////////////////////
+
             // 이미지 슬라이드
             window.setInterval(function(){
-
+                currentPosition++;
+                if(currentPosition > imageList.length-1){
+                    currentPosition = 0;
+                }
+                images.src = `images/${currentPosition}.jpg`;
             }, 5000);
+
+            //////////////////////////////////////////
+
+            // 화면 이동 버튼
+            const btns = document.querySelectorAll('#btns td'); 
+            for(let i=0; i<btns.length; i++) {
+                btns[i].addEventListener('click', (event)=>{
+                    location.href='animation-list.html';
+                });
+            }
+
+            
         
         
         });

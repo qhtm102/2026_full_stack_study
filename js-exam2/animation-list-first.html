@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <style>
+      body{
+        background-color: rgb(120, 199, 2);
+        color:white;
+      }
+      #genre_name{
+        border-radius: 30px;
+        background-color: greenyellow;
+        color:  #0f172a;
+        margin: 0 auto;
+        width: 300px;
+        height: 150px;
+        border: 1px solid black;
+      }
+      #genre_explain{
+        border-radius: 20px;
+        background-color: whitesmoke;
+        color:  #0f172a;
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid black;
+      }
+      #movie-card{
+        border-radius: 20px;
+        background-color: whitesmoke;
+        color:  #0f172a;
+      }
+      #back-btn{
+        border-radius: 5px;
+        background-color: gray;
+        color: black;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+    <div id="back-btn">⬅ 뒤로 가기</div>
+    <div id="genre_name">
+        
+        <h1 style="text-align: center; padding-top:10px">코미디<br>(Comedy)</h1>
+    
+    </div>
+
+     <br>
+
+    <div id="genre_explain">
+        
+        <h3>코미디 영화 는 유머를 강조하는 영화 장르 입니다 . 이러한 영화는 관객을 즐겁게 하고 웃게 하기 위해 제작됩니다. <br>
+            이 장르의 영화는 일반적으로 해피엔딩 으로 끝나지만, 블랙 코미디는 예외입니다. <br>
+            코미디는 영화 장르 중 가장 오래된 장르 중 하나이며, 고전 연극 코미디에서 유래했습니다 . </h3>
+    </div>
+
+    <br>
+    <div id="movie-divs"></div>
+
+    <script>
+        window.addEventListener('load', (event)=>{
+            const IMAGE_PATH = 'https://image.tmdb.org/t/p/original/';
+
+            const backBtn = document.querySelector('#back-btn');
+
+            backBtn.addEventListener('click', (event) => {
+                history.back();
+            });
+
+            const TMDB_ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGQwZmM2OTZkMDQyZjkwODFmNDJhZDU2YzFlM2FhMSIsIm5iZiI6MTc4MjM0NTkxOS40MDQsInN1YiI6IjZhM2M3MGJmODIwYjZhZjQ5NzY2M2RmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TFyFJd98YK3-_nxxK29CJZFNBfXpUtlFT4yGjTcqf7Y';
+            // const URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+            const URL = 'https://api.themoviedb.org/3/discover/movie?with_genres=35&sort_by=popularity.desc&language=ko-KR&page=1';
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`
+                }
+            };
+
+            fetch(URL, options)
+                    .then(response => response.json())  // then 앞의 작업이 끝나면 실행될 코드 지정, respones.json() : 응답을 json으로 변환
+                    .then(json => {
+                        console.log(json.results.length);
+
+                        for(let i=0; i<json.results.length; i++){
+                            const movie = json.results[i];
+                            console.log(movie);
+                            
+                            const title = movie.title;
+                            const overview = movie.overview;
+                            const poster = IMAGE_PATH + movie.poster_path;
+                            const release_date = movie.release_date;
+                            const popularity = movie.popularity;
+                            
+                            if(overview == "") {
+                                continue;
+                            }
+                            
+                            const movieDiv = document.querySelector('#movie-divs');
+                            movieDiv.innerHTML += 
+                            `
+                            <div id="movie-card" style="border-radius: 20px; padding:10px; border: 1px solid black">
+                                <img src=${poster} width='300px' height='300px'></img>
+                                <h3>${title}</h3>
+                                <p>줄거리: ${overview}</p>
+                                <h4>상영일: ${release_date}</h4>
+                                <h4>인기도: ${popularity}</h4>
+                            </div>
+                                <br>
+                                <br>
+                            `
+                        }
+                    });
+
+        });
+
+    </script>
+</body>
+</html>

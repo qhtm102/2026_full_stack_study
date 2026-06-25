@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genre Detail</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:#fff;
+    padding:30px;
+}
+
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* 공통 카드 스타일 (mypage.html 느낌) */
+.panel{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border-radius:25px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.inner-box{
+    background:rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:20px;
+    transition:.3s;
+}
+
+.inner-box:hover{
+    transform:translateY(-3px);
+}
+
+/* ===== 상단 ===== */
+
+.header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.back-btn{
+    padding:15px 25px;
+    border:none;
+    border-radius:12px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#444;
+}
+
+.genre-title{
+    flex:1;
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+/* ===== 장르 소개 ===== */
+
+.genre-desc{
+    min-height:280px;
+    font-size:1.1rem;
+    line-height:1.8;
+}
+
+/* ===== 추천 영화 ===== */
+
+.movie-section{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:20px;
+}
+
+.movie-list{
+    min-height:320px;
+}
+
+.movie-list h2{
+    margin-bottom:20px;
+}
+
+.movie-list ul{
+    list-style:none;
+}
+
+.movie-list li{
+    padding:12px;
+    margin-bottom:10px;
+    background:rgba(255,255,255,0.06);
+    border-radius:10px;
+}
+
+.movie-detail{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.movie-card{
+    min-height:70px;
+}
+
+/* ===== 하단 ===== */
+
+.footer-content{
+    min-height:260px;
+}
+
+/* ===== 모바일 ===== */
+
+@media(max-width:900px){
+
+    .header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .movie-section{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- 상단 -->
+    <section class="panel">
+        <div class="header">
+
+            <button class="back-btn">
+                ← 이전
+            </button>
+
+            <div class="inner-box genre-title">
+                🎬 장르 명
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 장르 소개 -->
+    <section class="panel">
+
+        <div class="inner-box genre-desc">
+            <h2>장르 소개</h2>
+            <br>
+            <p>
+                이 영역에는 해당 영화 장르에 대한 설명을 작성합니다.
+                특징, 역사, 대표 작품 등을 자유롭게 표시할 수 있습니다.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- 추천 영화 -->
+    <section class="panel">
+
+        <div class="movie-section">
+
+            <!-- 왼쪽 -->
+            <div class="inner-box movie-list">
+
+                <h2>추천 영화</h2>
+
+                <ul>
+                    <li>인터스텔라</li>
+                    <li>인셉션</li>
+                    <li>듄</li>
+                    <li>매트릭스</li>
+                    <li>블레이드 러너 2049</li>
+                </ul>
+
+            </div>
+
+            <!-- 오른쪽 -->
+            <div class="movie-detail">
+
+                <div class="inner-box movie-card">
+                    <strong>영화 설명</strong><br><br>
+                    선택한 영화의 간단한 줄거리
+                </div>
+
+                <div class="inner-box movie-card">
+                    감독 / 개봉일
+                </div>
+
+                <div class="inner-box movie-card">
+                    출연 배우
+                </div>
+
+                <div class="inner-box movie-card">
+                    평점 및 추천 이유
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 하단 -->
+    <section class="panel">
+
+        <div class="inner-box footer-content">
+            추가 콘텐츠(예고편, 이미지, 리뷰 등)
+        </div>
+
+    </section>
+
+</div>
+    <script>
+        
+    </script>
+</body>
+</html>

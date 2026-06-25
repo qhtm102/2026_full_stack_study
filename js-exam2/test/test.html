@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Test</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="start">시작</td>
+            <td id="stop">종료</td>
+        </tr>
+    </table>
+    <div id="message"></div>
+
+
+    <button id="query-movie">데이터 가져오기</button>
+    <hr>
+    <div id="message2"></div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event)=>{
+            const startBtn = document.querySelector('#start');
+            const stopBtn = document.querySelector('#stop');
+            const div = document.querySelector('#message');
+            let timerId = null;
+
+            startBtn.addEventListener('click', (event)=>{
+                if(timerId != null) {
+                    return;
+                }
+
+                timerId = window.setInterval(
+                    function(){
+                        div.innerHTML = `<h3>${ new Date().toLocaleTimeString() }</h3>`;
+                }, 1000);
+                
+            });
+
+            stopBtn.addEventListener('click', (event)=>{
+                
+                if(timerId == null) {
+                    return;
+                }    
+                window.clearInterval(timerId);
+
+                timerId = null;
+            });
+
+
+            const btn = document.querySelector('#query-movie');
+            const div2 = document.querySelector('#message2');
+
+            const THRILLER = 53;
+            const COMEDY = 35;
+            const SCIENCE_FICTION = 878;
+            
+            let jsonDummy = [];
+
+            let comedyJson = [];
+            let thrillerJson = [];
+            let sfJson = [];
+
+            const TMDB_ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGQwZmM2OTZkMDQyZjkwODFmNDJhZDU2YzFlM2FhMSIsIm5iZiI6MTc4MjM0NTkxOS40MDQsInN1YiI6IjZhM2M3MGJmODIwYjZhZjQ5NzY2M2RmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TFyFJd98YK3-_nxxK29CJZFNBfXpUtlFT4yGjTcqf7Y';
+            // const URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+            // const URL = 'https://api.themoviedb.org/3/keyword/1721/movies';
+            const URL = 'https://api.themoviedb.org/3/discover/movie?with_genres=35&sort_by=popularity.desc&language=ko-KR&page=1';
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`
+                }
+            };
+
+            (async function loadData() {
+                const response = await fetch(URL, options);
+                const json = await response.json();
+
+                for(let i=0; i<json.results.length; i++){
+                    const movie = json.results[i];
+                    console.log(`movie.genre_ids: ${json.results[i].genre_ids}`);
+                    if(movie.genre_ids.includes(COMEDY)) {
+                        comedyJson.push(movie);
+                    }
+                    else if(movie.genre_ids.includes(THRILLER)){
+                        thrillerJson.push(movie)
+                    }
+                    else if(movie.genre_ids.includes(SCIENCE_FICTION)){
+                        sfJson.push(movie)
+                    }                            
+                }
+
+                        // .then(response => response.json())  // then 앞의 작업이 끝나면 실행될 코드 지정, respones.json() : 응답을 json으로 변환
+                        // .then(json => {
+                            // console.log(json);
+                            
+                            // for(let i=0; i<json.results.length; i++){
+                            //     const movie = json.results[i];
+                                
+                            //     if(movie.genre_ids.includes(COMEDY)) {
+                            //         comedyJson.push(movie);
+                            //     }
+                            //     else if(movie.genre_ids.includes(THRILLER)){
+                            //         thrillerJson.push(movie)
+                            //     }
+                            //     else if(movie.genre_ids.includes(SCIENCE_FICTION)){
+                            //         sfJson.push(movie)
+                            //     }
+                            
+                            // }
+
+                            // console.log(`comedyJson: ${comedyJson}`);        
+                            // console.log(`thrillerJson: ${thrillerJson}`);        
+                            // console.log(`sfJson: ${sfJson}`);      
+//                        });
+
+                console.log(comedyJson);        
+                console.log(`thrillerJson: ${thrillerJson}`);        
+                console.log(`sfJson: ${sfJson}`);        
+            })();
+                // btn.addEventListener('click', function(event){
+            
+            //     fetch(URL, options)
+            //         .then(response => response.json())  // then 앞의 작업이 끝나면 실행될 코드 지정, respones.json() : 응답을 json으로 변환
+            //         .then(json => {
+            //             // console.log(json);
+                        
+            //             for(let i=0; i<json.results.length; i++){
+            //                 const movie = json.results[i];
+            //                 console.log(`movie${i}: ${movie}`);
+            //                 jsonDummy.push(movie);
+            //                 console.log(`${jsonDummy}`);
+                            
+            //                 if(movie.genre_ids.includes(COMEDY)) {
+            //                      div.innerHTML += `<h5>${i + 1}. <a href='test-detail.html?id=${movie.id}'>${movie.title}</a> [ ${movie.popularity} ] </h5>`
+            //                 }
+                        
+            //             }
+            //         });
+
+            // });
+
+    
+        });
+
+    </script>
+</body>
+</html>

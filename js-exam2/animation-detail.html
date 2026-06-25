@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <link rel="Stylesheet" href="animation.css">
+</head>
+<body>
+    <div id="message"></div>
+
+    <script>
+        window.addEventListener('load', (event) => {
+
+            const TMDB_ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGQwZmM2OTZkMDQyZjkwODFmNDJhZDU2YzFlM2FhMSIsIm5iZiI6MTc4MjM0NTkxOS40MDQsInN1YiI6IjZhM2M3MGJmODIwYjZhZjQ5NzY2M2RmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TFyFJd98YK3-_nxxK29CJZFNBfXpUtlFT4yGjTcqf7Y';
+            const URL = 'https://api.themoviedb.org/3/keyword/1721/movies';
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`
+                }
+            };
+            const qs = new URLSearchParams(location.search);
+            const id = qs.get('id');
+            const div = document.querySelector('#message');
+
+            fetch(`https://api.themoviedb.org/3/movie/${id}`, options)
+                .then(function(response) { return response.json() } )
+                .then(function(json) {
+                    
+                    
+                    // div.innerHTML = `<h3>${json.title}</h3>` + 
+                    //                 `<h3>${json.release_date}</h3>` +
+                    //                 `<h3>${json.overview}</h3>` 
+
+
+                   div.innerHTML = `
+                        <section class="genre-intro-section">
+                            <div class="genre-intro-box">
+                                <h3>장르 소개</h3>
+                                <p></p>
+                            </div>
+                        </section>
+
+                    
+                        <section class="movie-section">
+                        
+                            <div class="movie-list-box">
+                               <img src="#">
+                            </div>
+
+                    
+                            <div class="movie-detail-box">
+                                <div class="movie-detail main-detail">
+                                    영화 설명
+                                </div>
+
+                                <div class="movie-detail"></div>
+                                <div class="movie-detail"></div>
+                                <div class="movie-detail"></div>
+                            </div>
+                        </section>
+                    `
+                    
+                })
+            
+            
+
+        });
+    </script>
+</body>
+</html>

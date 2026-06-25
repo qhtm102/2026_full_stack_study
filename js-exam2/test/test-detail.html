@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch 함수 연습</title>
+</head>
+<body>
+    <div id="message"></div>
+    <script>
+        window.addEventListener('load', function(event) {
+
+            const div = document.querySelector('#message');
+
+            // alert(window.location.href);
+            // alert(window.location.search);   // ?이름=값;... 출력
+
+            // ?id=12 split으로 =을 기준으로 배열로 나눔 => ['?id', '12']
+            // const id = location.search.split('=')[1];
+
+            const TMDB_ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGQwZmM2OTZkMDQyZjkwODFmNDJhZDU2YzFlM2FhMSIsIm5iZiI6MTc4MjM0NTkxOS40MDQsInN1YiI6IjZhM2M3MGJmODIwYjZhZjQ5NzY2M2RmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TFyFJd98YK3-_nxxK29CJZFNBfXpUtlFT4yGjTcqf7Y';
+            const URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`
+                }
+            };
+
+            const qs = new URLSearchParams(location.search);
+            const id = qs.get('id'); // ?...&id=10&... => id값인 10 반환
+
+            fetch(`https://api.themoviedb.org/3/movie/${id}`, options)
+                .then(function(response) { return response.json() } )
+                .then(function(json) {
+                    
+                    
+                    div.innerHTML = `<h3>${json.title}</h3>` + 
+                                    `<h3>${json.release_date}</h3>` +
+                                    `<h3>${json.overview}</h3>` 
+
+                    // for(let i=0; i<json.genre.length; i++){
+                    //     div.innerHTML += `<h3>${json.genre[i]}</h3>`  
+                    // }
+                    
+                })
+            
+                
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mole Game</title>
+    <style>
+        table { margin: 0 auto; }
+        img, #score { width: 150px; height: 150px; border: solid 1px; }
+        button { width: 49%; height: 50px; }
+        #score { text-align:center; font-size: 15pt; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="back-btn" style="width: 120px;height: 40px;border: 1px solid blue; text-align: center;">메인페이지</div>
+
+    <table>
+        <tr>
+            <td><img></td>
+            <td><img></td>
+            <td><img></td>
+            <th id="score" rowspan="4">점수 : 0</th>
+        </tr>
+        <tr>
+            <td><img></td>
+            <td><img></td>
+            <td><img></td>            
+        </tr>
+        <tr>
+            <td><img></td>
+            <td><img></td>
+            <td><img></td>
+        </tr>
+        <tr>
+            <th colspan="3">
+                <button id="btn-start">게임 시작</button>
+                <button id="btn-stop">게임 종료</button>
+            </th>
+        </tr>
+    </table>
+    
+    <script>
+        window.addEventListener('load', (event)=>{
+            const backBtn = document.querySelector('#back-btn');
+            backBtn.addEventListener('click', (event)=>{
+                history.back();
+            });
+
+            // 1. img에 구멍사진 넣기
+            const images = document.querySelectorAll('img');
+            
+            images.forEach((image, idx) => {
+                image.src = 'images/hole.jpg';
+
+                image.addEventListener('click', (event)=>{
+                    const position = event.target;
+                    
+                });
+            });
+            
+            let timerId = null;
+
+            // 2. 게임 시작 누르면 두더지가 나오게 하기
+            const startBtn = document.querySelector('#btn-start');
+            startBtn.addEventListener('click', (event) => {
+                if(timerId != null) return;
+
+                timerId = setInterval(function(){
+                            const randomNo = Math.floor(Math.random() * 9);
+                            images[randomNo].src='images/mole2.png';
+                            
+                            window.setTimeout(function() {
+                            images[randomNo].src='images/hole.jpg'
+                            }, 500);
+                        }, 1000);
+                });
+            // 3. 두더지가 클릭되면 dead로 이미지 바꾸기
+
+            // 4. 게임 종료 누르면 게임 종료시키기
+            const stopBtn = document.querySelector('#btn-stop');
+            stopBtn.addEventListener('click', (event)=> {
+                if(timerId == null) return;
+
+                clearInterval(timerId);
+                timerId = null;
+            });
+        });
+    </script>
+</body>
+</html>

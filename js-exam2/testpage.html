@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장르 소개 페이지</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"맑은 고딕", sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    padding:20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* 공통 */
+section{
+    border:2px solid red;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.box{
+    border:5px solid #000;
+    background:#ddd;
+    padding:20px;
+}
+
+/* 상단 */
+.top{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    min-height:120px;
+}
+
+.back-btn{
+    width:100px;
+    height:60px;
+    border:4px solid #000;
+    background:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.genre-title{
+    flex:1;
+    height:100px;
+    display:flex;
+    align-items:flex-start;
+    padding-left:40px;
+    padding-top:20px;
+    font-size:30px;
+    color:red;
+}
+
+/* 장르 소개 */
+.intro{
+    height:300px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    font-size:28px;
+    color:red;
+    padding-top:40px;
+}
+
+/* 추천 영화 */
+.recommend-wrap{
+    display:flex;
+    gap:15px;
+}
+
+.movie-list{
+    width:45%;
+    min-height:300px;
+    font-size:28px;
+    color:red;
+    padding-top:30px;
+    padding-left:30px;
+}
+
+.movie-info{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.info-box{
+    flex:1;
+    min-height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    color:red;
+}
+
+/* 하단 */
+.bottom{
+    height:300px;
+}
+
+@media(max-width:768px){
+
+    .top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .genre-title{
+        width:100%;
+    }
+
+    .recommend-wrap{
+        flex-direction:column;
+    }
+
+    .movie-list{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- 상단 -->
+    <section>
+        <div class="top">
+            <button class="back-btn">이전 버튼</button>
+
+            <div class="box genre-title">
+                장르 명
+            </div>
+        </div>
+    </section>
+
+    <!-- 장르 소개 -->
+    <section>
+        <div class="box intro">
+            장르 소개
+        </div>
+    </section>
+
+    <!-- 추천 영화 -->
+    <section>
+        <div class="recommend-wrap">
+
+            <div class="box movie-list">
+                추천 영화
+            </div>
+
+            <div class="movie-info">
+                <div class="box info-box">영화 설명</div>
+                <div class="box info-box"></div>
+                <div class="box info-box"></div>
+                <div class="box info-box"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 하단 영역 -->
+    <section>
+        <div class="box bottom"></div>
+    </section>
+
+</div>
+
+</body>
+</html>
