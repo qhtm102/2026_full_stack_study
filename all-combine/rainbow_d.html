@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       td{
+            width: 100px;
+            height: 100px;
+            border: solid 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="back-btn" style="width: 120px;height: 40px;border: 1px solid blue; text-align: center;">메인페이지</div>
+
+    <table>
+        <tr id="btn">
+            <td id="red" style="background-color: red;"></td>
+            <td id="orange" style="background-color: orange;"></td>
+            <td id="yellow" style="background-color: yellow;"></td>
+            <td id="green" style="background-color: green;"></td>
+            <td id="blue" style="background-color: blue;"></td>
+            <td id="navy" style="background-color: navy;"></td>
+            <td id="purple" style="background-color: purple;"></td>
+       
+        </tr>
+        <tr>
+            <td id="result" colspan="7" style="width: 100%; height: 300px;">
+            </td>
+        </tr>
+
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event)=>{
+            const backBtn = document.querySelector('#back-btn');
+            backBtn.addEventListener('click', function(event){
+                history.back();
+            });
+
+            const btns = document.querySelectorAll('#btn > td');
+            const canvas = document.querySelector('#result');
+
+            for(let i=0; i<btns.length; i++) {
+                btns[i].addEventListener('click', event => {
+                    canvas.style.backgroundColor = btns[i].style.backgroundColor;
+                });
+            }
+            // btns.forEach((btn, idx)=>{
+            //     btn[idx].addEventListener('click', (event) => {
+            //         canvas.style.backgroundColor = btn[idx].style.backgroundColor;
+            //     });
+            // });
+        });
+    </script>
+</body>
+</html>

@@ -19,7 +19,11 @@
             <td><img></td>
             <td><img></td>
             <td><img></td>
-            <th id="score" rowspan="4">점수 : 0</th>
+            <th id="score" rowspan="4">
+                남은 시간 : <span id="times">0</span>
+                <hr>
+                점수 : <span id="scoreNo">0</span>
+            </th>
         </tr>
         <tr>
             <td><img></td>
@@ -46,6 +50,11 @@
                 history.back();
             });
 
+            let score = 0;
+            let remainTimes = 30;
+            const timeBoard = document.querySelector('#times');
+            const scoreBoard = document.querySelector('#score');
+            const scores = document.querySelector('#scoreNo');
             // 1. img에 구멍사진 넣기
             const images = document.querySelectorAll('img');
             
@@ -54,17 +63,33 @@
 
                 image.addEventListener('click', (event)=>{
                     const position = event.target;
-                    
+                
+                // 3. 두더지가 클릭되면 dead로 이미지 바꾸기
+                    if(position.src.indexOf('images/mole2.png') >= 0){
+                        event.target.src = 'images/dead.png';
+                        score += 1;
+                        // scoreBoard.innerText = `점수 : ${score}`;
+                        scores.innerText = `${score}`;
+                    }
+                        
                 });
             });
             
             let timerId = null;
+            let gameTimerId = null;
 
             // 2. 게임 시작 누르면 두더지가 나오게 하기
+            // 게임 시작시 이전 점수 초기화
             const startBtn = document.querySelector('#btn-start');
             startBtn.addEventListener('click', (event) => {
-                if(timerId != null) return;
+                if(timerId != null || gameTimerId != null) return;
 
+                remainTimes = 30;
+                timeBoard.innerText = `${remainTimes}`;
+                score = 0;
+                // scoreBoard.innerText = `점수 : ${score}`;
+                scores.innerText = `${score}`;
+                
                 timerId = setInterval(function(){
                             const randomNo = Math.floor(Math.random() * 9);
                             images[randomNo].src='images/mole2.png';
@@ -73,17 +98,31 @@
                             images[randomNo].src='images/hole.jpg'
                             }, 500);
                         }, 1000);
+
+                gameTimerId = setInterval(function() {
+                        remainTimes -= 1;
+                        timeBoard.innerText = `${remainTimes}`;
+                        if(remainTimes == 0) {
+                            stopGame();
+                        }   
+                    }, 1000);
                 });
-            // 3. 두더지가 클릭되면 dead로 이미지 바꾸기
+            
 
             // 4. 게임 종료 누르면 게임 종료시키기
             const stopBtn = document.querySelector('#btn-stop');
             stopBtn.addEventListener('click', (event)=> {
-                if(timerId == null) return;
+                if(timerId == null && gameTimerId == null) return;
 
+                stopGame();
+            });
+
+            function stopGame() {
                 clearInterval(timerId);
                 timerId = null;
-            });
+                clearInterval(gameTimerId);
+                gameTimerId = null;
+            }
         });
     </script>
 </body>

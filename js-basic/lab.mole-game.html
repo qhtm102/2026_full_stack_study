@@ -6,19 +6,23 @@
     <title>두더지 사냥</title>
 <style>
         table { margin: 0 auto; }
-        img, #score { width: 150px; height: 150px; border: solid 1px; }
+        img, #dashboard { width: 150px; height: 150px; border: solid 1px; }
         button { width: 49%; height: 50px; }
-        #score { text-align:center; font-size: 15pt; font-weight: bold; }
+        #dashboard { text-align:center; font-size: 15pt; font-weight: bold; }
     </style>
 </head>
 <body>
-
+    <h3 style="text-align: center;"> ㅁ두더지 게임 (이상진)ㅁ </h3>
     <table>
         <tr>
             <td><img></td>
             <td><img></td>
             <td><img></td>
-            <th id="score" rowspan="4">점수 : 0</th>
+            <th id="dashboard" rowspan="4">
+                남은시간 : <span id="time" >0</span>
+                <hr>
+                점수 : <spane id="score">0</spane>
+            </th>
         </tr>
         <tr>
             <td><img></td>
@@ -44,8 +48,11 @@
         
             const images = document.querySelectorAll('img');
             let score = 0;
+            let timeRemain = 0;
 
-            const scoreDiv = document.querySelector('#score');
+            // const scoreDiv = document.querySelector('#score');
+            const timeSpan = document.querySelector('#time');
+            const scoreSpan = document.querySelector('#score');
 
             // for(let i=0; i<images.length; i++){}
             // for(let i in images){}
@@ -66,7 +73,7 @@
                         
                         // 점수 로직
                         score += 1; // 점수 증가
-                        scoreDiv.innerText = `점수: ${score}`; // 점수 표시
+                        scoreSpan.innerText = `${score}`; // 점수 표시
                     } 
                 });
             });
@@ -75,14 +82,18 @@
 
             const startBtn = document.querySelector('#btn-start');
             const stopBtn = document.querySelector('#btn-stop');
-            let timerId = null;
+
+            let timerId = null; // 두더지 표시 타이머
+            let gameTimerId = null; // 게임 시간 타이머
 
             startBtn.addEventListener('click',(event)=>{
-                if(timerId != null) return;
+                if(timerId != null || gameTimerId != null) return;
                 
                 score = 0;  // 시작 전 점수 초기화
-                scoreDiv.innerText = `점수: ${score}`;
+                // scoreDiv.innerText = `점수: ${score}`;
+                scoreSpan.innerText = `${score}`;
 
+                // 두더지 시간 타이머
                 timerId = setInterval(function(){
                     
                     // 1. 두더지 표시 (출현)
@@ -97,20 +108,36 @@
                     }, 500);
 
                 }, 1000);
+
+                // 게임 시간 초기화
+                timeRemain = 10;
+                timeSpan.innerText = `${timeRemain}`;
+
+                // 게임 시간 관리 타이머
+                gameTimerId = setInterval(function() {
+                    timeRemain -= 1;
+                    timeSpan.innerText = `${timeRemain}`;
+                    if(timeRemain == 0){
+                        stopGame();
+                    }
+                }, 1000);
+
             });
 
             stopBtn.addEventListener('click',(event)=>{
-                if(timerId == null) return;
-                
-
-
-                clearInterval(timerId);
-                timerId = null;
+                if(timerId == null && gameTimerId == null) return;
+                stopGame();
             });
 
+            function stopGame() {
+                clearInterval(timerId);
+                timerId = null;
+                clearInterval(gameTimerId);
+                gameTimerId = null;
+        }
         });
         
-
+        
         
     </script>
 </body>

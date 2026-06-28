@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>영화 장르 페이지</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+
+        .card {
+    width: 1200px;
+    max-width: 95%;
+    padding: 30px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+        /* 공통 섹션 */
+        .section {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* 상단 */
+        .top {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .back-btn {
+            width: 100px;
+            height: 60px;
+            border: none;
+            border-radius: 10px;
+            background: #334155;
+            color: white;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #475569;
+        }
+
+        .genre-title {
+            width: 400px;
+            height: 100px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* 장르 소개 */
+        .genre-info {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 25px;
+    line-height: 1.7;
+}
+
+        /* 추천 영화 */
+        .recommend {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+        .movie-list {
+    width: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+        .movie-detail {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .detail-box {
+            height: 70px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        /* 하단 */
+        .bottom {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 20px;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="section">
+            <div class="top">
+                <button class="back-btn" id="btn">⬅ 메인 페이지</button>
+                <div class="genre-title"><strong>SF(Science Fiction)</strong></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="genre-info">
+                <strong>SF(Science Fiction)</strong> 장르는 과학적 상상력과 미래 기술을 바탕으로 한 이야기를 다루는 영화 장르입니다.<br><br>
+
+                이 장르는 <strong>우주 탐험</strong>, <strong>인공지능(AI)</strong>, <strong>시간 여행</strong>,
+                <strong>외계 생명체</strong>, <strong>첨단 과학 기술</strong> 등 다양한 소재를 활용합니다.<br><br>
+
+                현실에서는 아직 불가능하거나 존재하지 않는 세계를 보여주며,
+                관객들에게 새로운 상상력과 흥미를 제공합니다.<br><br>
+
+                또한 과학 기술의 발전이 인간과 사회에 어떤 영향을 미칠지에 대한
+                깊은 질문을 던지기도 합니다.<br><br>
+
+                대표적인 SF 영화로는 <strong>인터스텔라</strong>, <strong>아바타</strong>,
+                <strong>마션</strong>, <strong>스타워즈</strong> 등이 있으며,
+                화려한 시각효과와 독창적인 세계관이 큰 매력으로 꼽힙니다.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="recommend">
+                <div class="movie-list" id="best-movie1">
+                    추천 영화
+                </div>
+
+                <div class="movie-list"id="best-movie2">
+                    추천 영화
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="bottom" id="star"></div>
+        </div>
+
+    </div>
+    <script>
+        window.addEventListener('load', function (event) {
+            const best1 = document.querySelector("#best-movie1");
+            const best2 = document.querySelector("#best-movie2");
+            const star = document.querySelector("#star");
+            const postBtn = document.querySelector('#btn');
+            
+            postBtn.addEventListener('click',function(event){
+                location.href='main.html';
+            });
+            const options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZGQwZmM2OTZkMDQyZjkwODFmNDJhZDU2YzFlM2FhMSIsIm5iZiI6MTc4MjM0NTkxOS40MDQsInN1YiI6IjZhM2M3MGJmODIwYjZhZjQ5NzY2M2RmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TFyFJd98YK3-_nxxK29CJZFNBfXpUtlFT4yGjTcqf7Y'
+                }
+            };
+
+            fetch('https://api.themoviedb.org/3/discover/movie?with_genres=878&sort_by=popularity.desc&language=ko-KR&page=1',options)
+                .then(response => response.json())
+                .then(json => {
+
+                    best1.innerHTML = '<h2>추천 영화</h2> <br>';
+                    best2.innerHTML = '<h2>추천 영화</h2> <br>';
+
+                    for(let i = 0; i < 3; i++) {
+
+                        const movie = json.results[i];
+
+                        best1.innerHTML +=
+                        `<div style="margin-bottom:30px;"> <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" width="120"><h2>${movie.title}</h2><div>${movie.overview}</div> </div>`;
+
+                    }
+                    for(let i =3; i<6; i++){
+                        const movie = json.results[i];
+
+                        best2.innerHTML +=
+                        `<div style="margin-bottom:30px;"> <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" width="120"><h2>${movie.title}</h2><div>${movie.overview}</div> </div>`;
+                    }
+
+                    for(let i = 0; i < 6; i++){
+                        const movie = json.results[i];
+                        star.innerHTML += 
+                        `<h2>${movie.title}</h2>총 관객수:${movie.popularity}`;
+                    }
+                });
+                
+        });
+    </script>
+
+</body>
+
+</html>
