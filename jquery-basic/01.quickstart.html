@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery QuickStart</title>
+</head>
+<body>
+    <div id="message"></div>
+
+    <!-- Local jquery 사용 (실제 환경 선호) -->
+    <!-- <script src="js/jquery-4.0.0.js"></script>  -->
+
+    <!-- CDN 사용 -->
+    <script src="http://code.jquery.com/jquery-4.0.0.js"></script>
+
+    <script>
+        // 1. 자바스크립트 시작 함수 : vanila js
+        // window.addEventListener('load', function(event){});
+        // document.addEventListener('DOMDocumentLoaded', function(event){});
+
+        // 2. 자바스크립트 시작 함수, JQuery 방식
+        // $(document).ready( function() {});
+        
+        $(function() {  // 이 함수는 </html>까지 처리한 다음 호출
+            $('#message').html(`<h2>Hello, JQuery1!! (${ new Date() })</h2>`);
+            $('#message2').html(`<h2>Hello, JQuery2!! (${ new Date() })</h2>`); // 여기서 #message2는 사용 가능
+        });
+        // $('#message').html(`<h2>Hello, JQuery3!! (${ new Date() })</h2>`);
+        // $('#message2').html(`<h2>Hello, JQuery4!! (${ new Date() })</h2>`);  // 여기서 #message2는 사용불가 (실행 안됫기 때문)
+    </script>
+
+    <div id="message2"></div>
+
+</body>
+</html>

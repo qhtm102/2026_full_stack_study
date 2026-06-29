@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Selector</title>
+</head>
+<body>
+
+    <div id="container">
+        <h2>공지사항</h2>
+        <ul id="notice-list">
+            <li class="important">필독 공지 1</li>
+            <li>일반 공지 2</li>
+            <li class="important">필독 공지 3</li>
+            <li>일반 공지 4</li>
+            <li class="new">새 공지 5</li>
+        </ul>
+        <button id="btn-hide">짝수 항목 숨기기</button>
+        <button id="btn-highlight">필독 강조</button>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-4.0.0.js"></script>
+
+    <script>
+        
+        // $(function() {  
+        jQuery( function() {  // jQuery == $
+            // 1. .important 글자색 빨간색
+                // const elements_v = document.querySelectorAll('.important')
+                // const elements = $('.important');
+                // elements.css('color', 'red');   // element.style.color.red
+                $('.important').css('color', 'red');
+
+            // 2. 인덱스 기준 짝수항목 배경색 적용
+                // $('li:nth-child(2n)').css('background-color', 'orange'); // nth-child : 1부터 시작하는 순서번호
+                $('li:even').css('background-color', 'orange'); // 인덱스가 짝수인 요소 :even 여러 개의 li 중에서 0부터 시작하는 순서번호가 짝수인 요소
+
+            // 3. #btn-hide 클릭 시 인덱스 기준 짝수 항목 숨기기
+                $('#btn-hide').on('click', function(event) {    // on == addEventListener
+                    $('li:even').hide();    // hide() 요소 숨기기
+                });
+
+            // 4. #btn-highlight 클릭 시 .important 항목에 font-weight: bold 적용
+                $('#btn-highlight').on('click', function(event){
+                    $('.important').css('font-weight', 'bold');
+                });
+                
+            // 5. 마지막 li의 바로 이전 형제 항목의 텍스트를 콘솔에 출력
+                alert($('li').last().prev().text());    // last() : 마지막 요소 찾기, prev() : previous sibling 찾기 (같은 레벨의 이전 요소 찾기)
+
+        });
+     
+    </script>
+
+
+</body>
+</html>

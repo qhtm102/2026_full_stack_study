@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <table id="lotto_table">
+        <tr style="text-align: center;">
+            <td colspan="6">
+                <button id="btn">숫자 생성기</button>
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function() {
+            
+            const btn = $('#btn');
+            const table = $('#lotto_table');
+            table.css({
+                        border: 'solid 1px',
+                    });
+            
+            btn.on('click', function(){
+                    table.css({
+                        border: 'solid 1px',
+                        width: '500px',
+                        height: '500px'
+                    });
+                const numberList = selectWinningNumbers();
+                console.log(numberList.length);
+                const tr = $(`<tr></tr>`);
+                numberList.forEach(function(number, idx) {
+                    tr.append($(`<td>${number} </td>`));
+                    // table.append($(`<tr><td>${number}</td></tr>`));
+                });
+                table.append(tr);
+            });
+
+
+            function selectWinningNumbers() {
+
+                const numbers = [];
+                for (let i = 0; i < 6; i++) {
+                    const number = Math.floor(Math.random() * 45 + 1);
+                    numbers.push(number);
+                    
+                    for (let j = 0; j < i; j++) {
+                        if (numbers[j] == numbers[i]) {
+                            console.log('number equals');
+                            i--;
+                            numbers.pop([i]);
+                            break;
+                        }
+                
+                    }
+                }
+
+                return numbers;
+
+            }
+        })
+    </script>
+</body>
+</html>
