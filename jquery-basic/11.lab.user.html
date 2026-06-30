@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch 함수 연습</title>
+    <style>
+        table{
+            width: 800px;
+            margin: 0 auto;
+        }
+        th {
+            border: solid 1px black;
+            height: 50px;
+        }
+        div{
+            text-align: center;
+        }
+        button{
+            height: 50px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="request-post">데이터 가져오기</button>
+    </div>
+    
+    <hr>
+    <table id="user-table">
+        <tr>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>전화번호</th>
+            <th>회사이름</th>
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script>
+        // 아래 코드를 jQuery 구문으로 변경
+        // 데이터 조회 결과를 tr과 td를 이용해서 표시
+
+        $(function() {
+            const btn = $('#request-post');
+            const table = $('#user-table');
+
+            btn.on('click', (event)=> {
+                
+                $.ajax({
+                    "url":'https://jsonplaceholder.typicode.com/users',
+                    "method" : "get",
+                    "type" : "application/json",
+                    "success" : function(datas, status, hrx) {
+                        datas.forEach(function(data, idx) {
+                            const tr = $('<tr></tr>');
+
+                            $(`<td></td>`).text(`${data.name}`).css({
+                                        'text-align' : 'center',
+                                        'border' : 'solid 1px black'
+                                        })
+                                        .appendTo(tr);
+
+                            $(`<td></td>`).text(`${data.email}`)
+                            .css({
+                                        'text-align' : 'center',
+                                        'border' : 'solid 1px black'
+                                        })
+                                        .appendTo(tr);
+                            $(`<td></td>`).text(`${data.phone}`)
+                            .css({
+                                        'text-align' : 'center',
+                                        'border' : 'solid 1px black'
+                                        })
+                                        .appendTo(tr);
+                            $(`<td></td>`).text(`${data.company.name}`)
+                                        .css({
+                                        'text-align' : 'center',
+                                        'border' : 'solid 1px black'
+                                        })
+                                        .appendTo(tr);
+                            
+                                        table.append(tr);
+                        });
+                    
+                    },
+                    "error" : function(hrx, status, err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+        });
+    </script>
+    
+</body>
+</html>

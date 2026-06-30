@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+
+</head>
+<body>
+    <button id="btn1">보여주세요</button>
+    <button id="btn2">숨겨주세요</button>
+    <button id="btn3">Animate</button>
+    <hr>
+
+    <div>
+        <img id="nature" src="images/nature-1.jpg" alt="">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script>
+        $(()=>{
+            
+            $('#btn1').on('click', (event) => {
+                // $('#nature').show(1000);
+                // $('#nature').slideDown(3000);
+                $('#nature').fadeIn(3000);
+            });
+
+            $('#btn2').on('click', (event) => {
+                // $('#nature').hide(1000);
+                // $('#nature').slideUp(3000);
+                $('#nature').fadeOut(3000);
+            });
+
+            $('#btn3').on('click', (event)=> {
+                // $('#nature').toggle(3000);
+                $('#nature').css({ 'position' : 'absolute','opacity' : 1, 'width' : 0})
+                            .animate({
+                                'opacity' : 0.3,
+                                'width': '1200px',
+                                'left' : '+= 30',
+                                'top' : '+= 50',
+                                'rotate' : '+=30deg'
+                            }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

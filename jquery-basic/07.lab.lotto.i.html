@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 600px;
+            margin: 0 auto;
+            border-spacing: 5px;
+        }
+        #btn-tr{
+            text-align: center;
+        }
+        #btn-tr button{
+            height: 50px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <table id="lotto_table">
+        <tr id="btn-tr">
+            <td colspan="6">
+                <button id="btn-select-numbers">당첨예상번호 뽑기</button>
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function() {
+
+             function selectWinningNumbers() {
+
+                const numbers = [];
+                for (let i = 0; i < 6; i++) {
+                    const number = Math.floor(Math.random() * 45 + 1);
+                    numbers[i] = number;
+                    
+                    for (let j = 0; j < i; j++) {
+                        if (numbers[j] == numbers[i]) {
+                            console.log('number equals');
+                            i--;
+                            break;
+                        }
+                
+                    }
+                }
+
+                return numbers;
+
+            }
+
+            const table = $('#lotto_table');
+
+            $('#btn-select-numbers').on('click', function() {
+                const numbers = selectWinningNumbers();
+                const tr = $('<tr></tr>');
+                numbers.forEach(function(number, idx) {
+                    $(`<td></td>`).text(number)
+                                    .css({
+                                        'text-align' : 'center',
+                                        'height' : '60px',
+                                        'width' : '100px',
+                                        'border' : 'solid 1px black'
+                                    })
+                                    .appendTo(tr);
+                });
+                table.append(tr);                 
+                
+            });
+        });
+
+        
+    </script>
+</body>
+</html>

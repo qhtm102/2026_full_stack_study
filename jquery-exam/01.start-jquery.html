@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="message"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function() {
+            // 태그 생성
+            const $h1 = $('<h1>YRano</h1>');
+            // 생성한 태그를 삽입 해줘야 화면에 출력 (body에 삽입)
+            $('body').append($h1);
+            
+            // 변수에 태그 지정 
+            const div = $('#message');
+
+            // innerHtml jquery 사용법
+            div.html('<h2>Hello</h2>');
+
+        });
+    </script>
+</body>
+</html>
